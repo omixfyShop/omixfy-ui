@@ -7,7 +7,7 @@ Repositório oficial de componentes UI do Omixfy, compatível com o shadcn CLI.
 Para instalar componentes do Omixfy UI em seu projeto, use o comando:
 
 ```bash
-npx shadcn-ui add "https://raw.githubusercontent.com/omixfy/omixfy-ui/main/registry/button.json"
+npx shadcn-ui add "https://raw.githubusercontent.com/omixfyShop/omixfy-ui/main/registry/button.json"
 ```
 
 ## Componentes Disponíveis
