@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "name": "omixfy-ui",
+  "homepage": "https://omixfy.com",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:component",
+      "title": "Button",
+      "description": "Um componente de botão customizável com variantes no estilo Polaris.",
+      "files": [
+        {
+          "path": "registry/button.json",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}
+
