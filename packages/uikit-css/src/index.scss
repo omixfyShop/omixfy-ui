@@ -1,0 +1,13 @@
+// Variáveis do Design System
+@use './variables.scss';
+@use '../../base-ui/templates/buttons/button.scss';
+
+// ============================================================
+// Omixfy UIkit CSS
+// ============================================================
+// Biblioteca de estilos nativos do Omixfy
+// Compilado para global.css
+
+// Camadas do CSS
+@layer reset, base, components, utilities, theme;
+

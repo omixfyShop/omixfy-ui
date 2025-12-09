@@ -1,0 +1,43 @@
+name: Publish @omixfy/uikit-css
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages/uikit-css/**'
+      - '.github/workflows/publish-uikit-css.yml'
+  workflow_dispatch:
+  release:
+    types: [created]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Instalar dependências
+        working-directory: ./packages/uikit-css
+        run: npm ci
+
+      - name: Build do pacote
+        working-directory: ./packages/uikit-css
+        run: npm run build
+
+      - name: Publicar no npm
+        working-directory: ./packages/uikit-css
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public

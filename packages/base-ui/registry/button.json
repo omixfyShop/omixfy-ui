@@ -20,7 +20,7 @@
     {
       "path": "templates/button.css",
       "type": "registry:style",
-      "content": ".omixfy-btn {\n  @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors;\n  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;\n  @apply disabled:opacity-50 disabled:pointer-events-none;\n}\n",
+      "content": ".omixfy-btn {\n  /* Estilos aplicados via classes Tailwind no componente */\n}\n",
       "target": "components/ui/button.css"
     }
   ]

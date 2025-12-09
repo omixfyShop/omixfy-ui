@@ -1,0 +1,10 @@
+src/
+node_modules/
+*.log
+.DS_Store
+.git/
+.gitignore
+package-lock.json
+*.map
+.storybook/
+dist/
