@@ -36,6 +36,10 @@ jobs:
         working-directory: ./packages/uikit-css
         run: npm run build
 
+      - name: Verificar versão
+        working-directory: ./packages/uikit-css
+        run: npm run check-version
+
       - name: Publicar no npm
         working-directory: ./packages/uikit-css
         env:

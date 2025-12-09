@@ -1,6 +1,6 @@
 {
   "name": "@omixfy/uikit-css",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Biblioteca de estilos CSS nativos do Omixfy UIkit",
   "main": "dist/global.css",
   "files": [
@@ -10,7 +10,8 @@
   "scripts": {
     "build": "sass src/index.scss dist/global.css --style=compressed --no-source-map",
     "build:dev": "sass src/index.scss dist/global.css --style=expanded --source-map",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "check-version": "node scripts/check-version.js"
   },
   "keywords": [
     "omixfy",
@@ -26,7 +27,8 @@
   "author": "Omixfy",
   "license": "MIT",
   "devDependencies": {
-    "sass": "^1.94.2"
+    "sass": "^1.94.2",
+    "semver": "^7.6.3"
   },
   "repository": {
     "type": "git",

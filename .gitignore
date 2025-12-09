@@ -6,4 +6,4 @@ build/
 .env
 .env.local
 storybook-static/
-
+.cursor/
