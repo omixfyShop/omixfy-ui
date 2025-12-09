@@ -20,6 +20,9 @@
     "design-system",
     "styles"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Omixfy",
   "license": "MIT",
   "devDependencies": {
