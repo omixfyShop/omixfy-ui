@@ -30,7 +30,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/omixfyShop/omixfy-ui.git",
+    "url": "git+https://github.com/omixfyShop/omixfy-ui.git",
     "directory": "packages/uikit-css"
   }
 }
