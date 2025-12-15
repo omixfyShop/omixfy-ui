@@ -7,8 +7,31 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component:
-          "Um componente de botão customizável seguindo o design system do Omixfy usando CSS puro. As variantes são definidas no arquivo button.scss.",
+        component: `Um componente de botão customizável seguindo o design system do Omixfy usando CSS puro. As variantes são definidas no arquivo button.scss.
+
+## Instalação
+
+\`\`\`bash
+npx shadcn-ui@latest add "https://raw.githubusercontent.com/omixfyShop/omixfy-ui/main/packages/base-ui/registry/button.json"
+\`\`\`
+
+## Uso Básico
+
+\`\`\`tsx
+import { Button } from "@/components/ui/button"
+
+// Botão primário
+<Button variant="primary">Clique aqui</Button>
+
+// Botão secundário
+<Button variant="secondary">Cancelar</Button>
+
+// Botão com outline
+<Button variant="primary" appearance="outline">Ver mais</Button>
+
+// Botão com tamanho pequeno
+<Button variant="primary" size="sm">Pequeno</Button>
+\`\`\``,
       },
     },
   },

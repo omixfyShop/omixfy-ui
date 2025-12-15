@@ -7,8 +7,45 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component:
-          "Um componente de card customizável seguindo o padrão Polaris Shopify adaptado ao design system do Omixfy usando CSS puro.",
+        component: `Um componente de card customizável seguindo o padrão Polaris Shopify adaptado ao design system do Omixfy usando CSS puro.
+
+## Instalação
+
+\`\`\`bash
+npx shadcn-ui@latest add "https://raw.githubusercontent.com/omixfyShop/omixfy-ui/main/packages/base-ui/registry/card.json"
+\`\`\`
+
+## Uso Básico
+
+\`\`\`tsx
+import { Card, CardSection } from "@/components/ui/card"
+
+// Card básico com título
+<Card title="Título do Card">
+  Conteúdo do card aqui.
+</Card>
+
+// Card com seções
+<Card title="Card com Seções">
+  <CardSection title="Seção 1">
+    Conteúdo da primeira seção.
+  </CardSection>
+  <CardSection title="Seção 2">
+    Conteúdo da segunda seção.
+  </CardSection>
+</Card>
+
+// Card com ações no footer
+<Card 
+  title="Card com Footer"
+  primaryFooterAction={{
+    content: "Salvar",
+    onAction: () => console.log("Salvar")
+  }}
+>
+  Conteúdo do card.
+</Card>
+\`\`\``,
       },
     },
   },
