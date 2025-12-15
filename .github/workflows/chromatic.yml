@@ -35,6 +35,12 @@ jobs:
           rm -rf node_modules package-lock.json
           npm install
 
+      - name: Gerar CSS do uikit-css
+        run: |
+          cd packages/uikit-css
+          npm install
+          npm run build
+
       - name: Publicar no Chromatic
         uses: chromaui/action@latest
         with:
