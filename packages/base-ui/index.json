@@ -14,6 +14,30 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "card",
+      "type": "registry:component",
+      "title": "Card",
+      "description": "Um componente de card customizável seguindo o padrão Polaris Shopify adaptado ao design system do Omixfy.",
+      "files": [
+        {
+          "path": "registry/card.json",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "text",
+      "type": "registry:component",
+      "title": "Text",
+      "description": "Um componente de tipografia customizável seguindo o padrão Polaris Shopify adaptado ao design system do Omixfy.",
+      "files": [
+        {
+          "path": "registry/text.json",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

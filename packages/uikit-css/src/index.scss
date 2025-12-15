@@ -1,6 +1,8 @@
 // Variáveis do Design System
 @use './variables.scss';
 @use '../../base-ui/templates/buttons/button.scss';
+@use '../../base-ui/templates/cards/card.scss';
+@use '../../base-ui/templates/text/text.scss';
 
 // ============================================================
 // Omixfy UIkit CSS
@@ -10,4 +12,5 @@
 
 // Camadas do CSS
 @layer ofReset, ofBase, ofComponents, ofUtilities, ofTheme;
+
 
