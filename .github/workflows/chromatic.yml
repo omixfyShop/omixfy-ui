@@ -31,11 +31,14 @@ jobs:
           node-version: '20'
 
       - name: Instalar dependências
-        run: npm install
+        run: |
+          rm -rf node_modules
+          npm install
 
       - name: Publicar no Chromatic
-        uses: chromaui/action@v1
+        uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           buildScriptName: build-storybook
           exitOnceUploaded: true
+          diagnostics: true
