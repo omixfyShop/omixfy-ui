@@ -12,7 +12,7 @@ const meta = {
 ## Instalação
 
 \`\`\`bash
-npx shadcn-ui@latest add "https://raw.githubusercontent.com/omixfyShop/omixfy-ui/main/packages/base-ui/registry/button.json"
+npx shadcn@latest add https://raw.githubusercontent.com/omixfyShop/omixfy-ui/main/packages/base-ui/registry/button.json
 \`\`\`
 
 ## Uso Básico
