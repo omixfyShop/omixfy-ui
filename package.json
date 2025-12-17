@@ -9,7 +9,8 @@
     "format:check": "prettier --check .",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "chromatic"
+    "chromatic": "chromatic",
+    "update-registry": "node packages/base-ui/scripts/update-registry.js"
   },
   "devDependencies": {
     "@storybook/addon-docs": "^10.1.2",

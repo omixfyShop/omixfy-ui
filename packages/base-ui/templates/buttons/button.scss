@@ -22,16 +22,16 @@ a.of-btn {
   // Tipografia
   font-family: var(--btn-font-family, "Inter", sans-serif);
   font-size: var(--btn-font-size, 12px);
-  font-weight: var(--btn-font-weight, 500);
+  font-weight: var(--btn-font-weight, 550);
   letter-spacing: 0.4px;
   text-decoration: none;
 
   // Visual
   background: var(--bgBtn, #000000);
   color: var(--textBtn, #ffffff);
-  border: var(--btn-border, 2px solid transparent);
+  border: var(--btn-border, 0px solid transparent);
   box-shadow: var(--btn-shadow, none);
-  corner-shape: round;
+  corner-shape: superellipse(0.9);
 
   // Interação
   cursor: pointer;
@@ -96,12 +96,12 @@ a.of-btn {
 ._btn-primary {
   --bgBtn: linear-gradient(
     170deg,
-    var(--of-primary-600) 0%,
+    var(--of-primary-400) 0%,
     var(--of-primary-800)
   );
   --textBtn: var(--of-primary-50);
-  --btn-shadow: inset 0 0 0 1px var(--of-primary-500);
-  --btn-border: 0 dotted transparent;
+  --btn-shadow: inset 0 0 0 0px var(--of-primary-500);
+  --btn-border: 0 solid transparent;
   --btn-hover-bg-gradient: linear-gradient(
     -170deg,
     var(--of-primary-700) 0%,
@@ -129,8 +129,8 @@ a.of-btn {
 ._btn-secondary {
   --bgBtn: linear-gradient(var(--of-secondary-700), var(--of-secondary-600));
   --textBtn: var(--of-secondary-50);
-  --btn-shadow: inset 0 -0.03rem 0 0.099rem
-    oklch(var(--of-secondary-oklch) / 0.4);
+  --btn-shadow: none;
+  --btn-border: 0 solid transparent;
   --btn-hover-bg-gradient: linear-gradient(
     var(--of-secondary-700),
     var(--of-secondary-700)
@@ -172,15 +172,15 @@ a.of-btn {
 // ============================================================
 
 ._btn-sm {
-  --btn-min-h: 24px;
-  --btn-min-w: 10px;
+  --btn-min-h: 28px;
+  --btn-min-w: 12px;
   --btn-font-size: 10px;
   --btn-padding: 8px;
 }
 
 ._btn-md {
   --btn-min-h: 32px;
-  --btn-min-w: 12px;
+  --btn-min-w: 13px;
   --btn-font-size: 14px;
   --btn-padding: 12px;
 }
