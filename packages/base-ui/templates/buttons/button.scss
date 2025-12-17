@@ -61,9 +61,12 @@ a.of-btn {
 // ============================================================
 
 ._btn-action {
-  --bgBtn: linear-gradient(var(--of-neutral-900), var(--of-neutral-600));
+  --bgBtn: linear-gradient(var(--of-neutral-700) 50%, var(--of-neutral-600) 100%);
   --textBtn: var(--of-neutral-50);
   --btn-shadow:
+    0 -0.0625rem 0 0.0625rem rgba(0, 0, 0, 0.8) inset,
+    0 0 0 0.0625rem #303030 inset,
+    0 0.03125rem 0 0.09375rem rgba(255, 255, 255, 0.25) inset,
     0 -0.0625rem 0 0.0625rem rgba(0, 0, 0, 0.8) inset,
     0 0 0 0.0625rem #303030 inset,
     0 0.03125rem 0 0.09375rem rgba(255, 255, 255, 0.25) inset;
@@ -174,8 +177,8 @@ a.of-btn {
 ._btn-sm {
   --btn-min-h: 28px;
   --btn-min-w: 12px;
-  --btn-font-size: 10px;
-  --btn-padding: 8px;
+  --btn-font-size: 12px;
+  --btn-padding: 6px 12px;
 }
 
 ._btn-md {
