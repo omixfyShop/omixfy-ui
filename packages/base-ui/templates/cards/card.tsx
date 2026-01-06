@@ -3,18 +3,6 @@
 import * as React from "react";
 import { cn } from "../../lib/utils";
 
-export interface DestructableAction {
-  content: string;
-  onAction?: () => void;
-  destructive?: boolean;
-}
-
-export interface DisableableAction {
-  content: string;
-  onAction?: () => void;
-  disabled?: boolean;
-}
-
 export interface CardSectionProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
   children?: React.ReactNode;
@@ -32,12 +20,39 @@ const CardSection = React.forwardRef<HTMLDivElement, CardSectionProps>(
 );
 CardSection.displayName = "CardSection";
 
+export interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+  children?: React.ReactNode;
+}
+
+const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
+  ({ className, children, ...props }, ref) => {
+    return (
+      <div ref={ref} className={cn("of-card-header", className)} {...props}>
+        {children}
+      </div>
+    );
+  }
+);
+CardHeader.displayName = "CardHeader";
+
+export interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {
+  children?: React.ReactNode;
+}
+
+const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
+  ({ className, children, ...props }, ref) => {
+    return (
+      <div ref={ref} className={cn("of-card-footer", className)} {...props}>
+        {children}
+      </div>
+    );
+  }
+);
+CardFooter.displayName = "CardFooter";
+
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
   sectioned?: boolean;
-  primaryFooterAction?: DestructableAction;
-  secondaryFooterActions?: DestructableAction[];
-  actions?: DisableableAction[];
   children?: React.ReactNode;
 }
 
@@ -47,22 +62,39 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
       className,
       title,
       sectioned = false,
-      primaryFooterAction,
-      secondaryFooterActions,
-      actions,
       children,
       ...props
     },
     ref
   ) => {
-    const hasHeader = title || (actions && actions.length > 0);
-    const hasFooter = primaryFooterAction || (secondaryFooterActions && secondaryFooterActions.length > 0);
+    const childrenArray = React.Children.toArray(children);
+    const hasCardHeader = childrenArray.some(
+      (child) => React.isValidElement(child) && child.type === CardHeader
+    );
 
-    const renderChildren = () => {
-      if (!children) return null;
+    const headerChildren: React.ReactNode[] = [];
+    const footerChildren: React.ReactNode[] = [];
+    const contentChildren: React.ReactNode[] = [];
+
+    React.Children.forEach(children, (child) => {
+      if (React.isValidElement(child)) {
+        if (child.type === CardHeader) {
+          headerChildren.push(child);
+        } else if (child.type === CardFooter) {
+          footerChildren.push(child);
+        } else {
+          contentChildren.push(child);
+        }
+      } else {
+        contentChildren.push(child);
+      }
+    });
+
+    const renderContent = () => {
+      if (contentChildren.length === 0) return null;
 
       if (sectioned) {
-        return React.Children.map(children, (child) => {
+        return React.Children.map(contentChildren, (child) => {
           if (React.isValidElement(child) && child.type === CardSection) {
             return child;
           }
@@ -70,66 +102,24 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
         });
       }
 
-      return children;
+      return contentChildren;
     };
 
     return (
       <div ref={ref} className={cn("of-card", className)} {...props}>
-        {hasHeader && (
+        {!hasCardHeader && title && (
           <div className="of-card-header">
-            {title && <h2 className="of-card-title">{title}</h2>}
-            {actions && actions.length > 0 && (
-              <div className="of-card-actions">
-                {actions.map((action, index) => (
-                  <button
-                    key={index}
-                    className={cn("of-card-action", action.disabled && "of-card-action-disabled")}
-                    onClick={action.onAction}
-                    disabled={action.disabled}
-                  >
-                    {action.content}
-                  </button>
-                ))}
-              </div>
-            )}
+            <h2 className="of-card-title">{title}</h2>
           </div>
         )}
+
+        {headerChildren.length > 0 && headerChildren}
 
         <div className="of-card-content">
-          {renderChildren()}
+          {renderContent()}
         </div>
 
-        {hasFooter && (
-          <div className="of-card-footer">
-            {secondaryFooterActions && secondaryFooterActions.length > 0 && (
-              <div className="of-card-footer-secondary">
-                {secondaryFooterActions.map((action, index) => (
-                  <button
-                    key={index}
-                    className={cn(
-                      "of-card-footer-action",
-                      action.destructive && "of-card-footer-action-destructive"
-                    )}
-                    onClick={action.onAction}
-                  >
-                    {action.content}
-                  </button>
-                ))}
-              </div>
-            )}
-            {primaryFooterAction && (
-              <button
-                className={cn(
-                  "of-card-footer-primary",
-                  primaryFooterAction.destructive && "of-card-footer-primary-destructive"
-                )}
-                onClick={primaryFooterAction.onAction}
-              >
-                {primaryFooterAction.content}
-              </button>
-            )}
-          </div>
-        )}
+        {footerChildren.length > 0 && footerChildren}
       </div>
     );
   }
@@ -137,5 +127,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
 Card.displayName = "Card";
 
 (Card as any).Section = CardSection;
+(Card as any).Header = CardHeader;
+(Card as any).Footer = CardFooter;
 
-export { Card, CardSection };
+export { Card, CardSection, CardHeader, CardFooter };

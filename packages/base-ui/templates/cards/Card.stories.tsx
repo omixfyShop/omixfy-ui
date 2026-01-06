@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
-import { Card, CardSection } from "./card"
+import { Card, CardSection, CardHeader, CardFooter } from "./card"
 
 const meta = {
   component: Card,
@@ -18,7 +18,7 @@ npx shadcn@latest add https://raw.githubusercontent.com/omixfyShop/omixfy-ui/mai
 ## Uso Básico
 
 \`\`\`tsx
-import { Card, CardSection } from "@/components/ui/card"
+import { Card, CardSection, CardHeader, CardFooter } from "@/components/ui/card"
 
 // Card básico com título
 <Card title="Título do Card">
@@ -35,15 +35,19 @@ import { Card, CardSection } from "@/components/ui/card"
   </CardSection>
 </Card>
 
-// Card com ações no footer
-<Card 
-  title="Card com Footer"
-  primaryFooterAction={{
-    content: "Salvar",
-    onAction: () => console.log("Salvar")
-  }}
->
+// Card com header e footer customizados
+<Card title="Card com Footer">
+  <CardHeader>
+    {/* Conteúdo livre para adicionar */}
+    <h2>Título Customizado</h2>
+    <button>Editar</button>
+  </CardHeader>
   Conteúdo do card.
+  <CardFooter>
+    {/* Conteúdo livre para adicionar botões */}
+    <button>Cancelar</button>
+    <button>Salvar</button>
+  </CardFooter>
 </Card>
 \`\`\``,
       },
@@ -53,7 +57,7 @@ import { Card, CardSection } from "@/components/ui/card"
   argTypes: {
     title: {
       control: "text",
-      description: "Título do card exibido no header",
+      description: "Título do card exibido no header (só aparece se não houver CardHeader)",
       table: {
         type: { summary: "string" },
         category: "Props",
@@ -65,30 +69,6 @@ import { Card, CardSection } from "@/components/ui/card"
       table: {
         type: { summary: "boolean" },
         defaultValue: { summary: "false" },
-        category: "Props",
-      },
-    },
-    actions: {
-      control: "object",
-      description: "Array de ações exibidas no header ao lado do título",
-      table: {
-        type: { summary: "DisableableAction[]" },
-        category: "Props",
-      },
-    },
-    primaryFooterAction: {
-      control: "object",
-      description: "Ação primária no footer do card",
-      table: {
-        type: { summary: "DestructableAction" },
-        category: "Props",
-      },
-    },
-    secondaryFooterActions: {
-      control: "object",
-      description: "Array de ações secundárias no footer",
-      table: {
-        type: { summary: "DestructableAction[]" },
         category: "Props",
       },
     },
@@ -109,8 +89,8 @@ type Story = StoryObj<typeof meta>
 export const Basic: Story = {
   name: "Básico com Título",
   args: {
-    title: "Card Title",
-    children: "Conteúdo do card aqui.",
+    title: "Integração de marketplace",
+    children: "Adicione as plataformas para integrar os produtos, é importante já ter a conta para ser integrada.",
   },
   parameters: {
     docs: {
@@ -157,101 +137,159 @@ export const WithSectioned: Story = {
   },
 }
 
-export const WithHeaderActions: Story = {
-  name: "Com Ações no Header",
-  args: {
-    title: "Card com Ações",
-    actions: [
-      {
-        content: "Editar",
-        onAction: () => alert("Editar clicado"),
-      },
-      {
-        content: "Mais opções",
-        onAction: () => alert("Mais opções clicado"),
-      },
-    ],
-    children: "Card com ações no header ao lado do título.",
-  },
+export const WithCardHeader: Story = {
+  name: "Com CardHeader",
+  render: () => (
+    <Card>
+      <CardHeader>
+        <h2 style={{ margin: 0, flex: 1 }}>Card com Header Customizado</h2>
+        <button
+          onClick={() => alert("Editar clicado")}
+          style={{
+            background: "none",
+            border: "none",
+            padding: "4px 8px",
+            color: "#EA580C",
+            cursor: "pointer",
+            fontSize: "14px",
+            fontWeight: 500,
+          }}
+        >
+          Editar
+        </button>
+      </CardHeader>
+      <div>Conteúdo do card com header customizado.</div>
+    </Card>
+  ),
   parameters: {
     docs: {
       description: {
-        story: "Card com ações no header ao lado do título.",
+        story: "Card com CardHeader permitindo conteúdo livre no header.",
       },
     },
   },
 }
 
-export const WithPrimaryFooterAction: Story = {
-  name: "Com Ação Primária no Footer",
-  args: {
-    title: "Card com Footer",
-    children: "Conteúdo do card com ação primária no footer.",
-    primaryFooterAction: {
-      content: "Salvar",
-      onAction: () => alert("Salvar clicado"),
-    },
-  },
+export const WithCardFooter: Story = {
+  name: "Com CardFooter",
+  render: () => (
+    <Card title="Card com Footer">
+      <div>Conteúdo do card com footer customizado.</div>
+      <CardFooter>
+        <button
+          onClick={() => alert("Cancelar clicado")}
+          style={{
+            background: "none",
+            border: "none",
+            padding: "6px 12px",
+            color: "#292929",
+            cursor: "pointer",
+            fontSize: "14px",
+            fontWeight: 500,
+          }}
+        >
+          Cancelar
+        </button>
+        <button
+          onClick={() => alert("Salvar clicado")}
+          style={{
+            padding: "8px 16px",
+            background: "#EA580C",
+            border: "none",
+            borderRadius: "8px",
+            color: "#FFF5ED",
+            cursor: "pointer",
+            fontSize: "14px",
+            fontWeight: 500,
+          }}
+        >
+          Salvar
+        </button>
+      </CardFooter>
+    </Card>
+  ),
   parameters: {
     docs: {
       description: {
-        story: "Card com ação primária no footer.",
+        story: "Card com CardFooter permitindo conteúdo livre no footer.",
       },
     },
   },
 }
 
-export const WithSecondaryFooterActions: Story = {
-  name: "Com Ações Secundárias no Footer",
-  args: {
-    title: "Card com Footer",
-    children: "Conteúdo do card com ações secundárias no footer.",
-    secondaryFooterActions: [
-      {
-        content: "Cancelar",
-        onAction: () => alert("Cancelar clicado"),
-      },
-      {
-        content: "Excluir",
-        onAction: () => alert("Excluir clicado"),
-        destructive: true,
-      },
-    ],
-  },
+export const WithHeaderAndFooter: Story = {
+  name: "Com Header e Footer",
+  render: () => (
+    <Card title="Card Completo">
+      <CardHeader>
+        <h2 style={{ margin: 0, flex: 1 }}>Título Customizado</h2>
+        <button
+          onClick={() => alert("Editar clicado")}
+          style={{
+            background: "none",
+            border: "none",
+            padding: "4px 8px",
+            color: "#EA580C",
+            cursor: "pointer",
+            fontSize: "14px",
+            fontWeight: 500,
+          }}
+        >
+          Editar
+        </button>
+      </CardHeader>
+      <div>Conteúdo do card com header e footer customizados.</div>
+      <CardFooter>
+        <button
+          onClick={() => alert("Cancelar clicado")}
+          style={{
+            background: "none",
+            border: "none",
+            padding: "6px 12px",
+            color: "#292929",
+            cursor: "pointer",
+            fontSize: "14px",
+            fontWeight: 500,
+          }}
+        >
+          Cancelar
+        </button>
+        <button
+          onClick={() => alert("Excluir clicado")}
+          style={{
+            background: "none",
+            border: "none",
+            padding: "6px 12px",
+            color: "#EA580C",
+            cursor: "pointer",
+            fontSize: "14px",
+            fontWeight: 500,
+          }}
+        >
+          Excluir
+        </button>
+        <button
+          onClick={() => alert("Salvar clicado")}
+          style={{
+            padding: "8px 16px",
+            background: "#EA580C",
+            border: "none",
+            borderRadius: "8px",
+            color: "#FFF5ED",
+            cursor: "pointer",
+            fontSize: "14px",
+            fontWeight: 500,
+          }}
+        >
+          Salvar
+        </button>
+      </CardFooter>
+    </Card>
+  ),
   parameters: {
     docs: {
       description: {
-        story: "Card com ações secundárias no footer.",
-      },
-    },
-  },
-}
-
-export const WithFullFooter: Story = {
-  name: "Com Footer Completo",
-  args: {
-    title: "Card Completo",
-    children: "Card com todas as ações no footer (primária e secundárias).",
-    primaryFooterAction: {
-      content: "Salvar",
-      onAction: () => alert("Salvar clicado"),
-    },
-    secondaryFooterActions: [
-      {
-        content: "Cancelar",
-        onAction: () => alert("Cancelar clicado"),
-      },
-      {
-        content: "Excluir",
-        onAction: () => alert("Excluir clicado"),
-        destructive: true,
-      },
-    ],
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: "Card com footer completo contendo ação primária e ações secundárias.",
+        story: "Card com CardHeader e CardFooter customizados. Note que o title do Card é ignorado quando há CardHeader.",
       },
     },
   },
@@ -286,76 +324,117 @@ export const WithManualSections: Story = {
 
 export const Complete: Story = {
   name: "Card Completo",
-  args: {
-    title: "Card Completo",
-    actions: [
-      {
-        content: "Editar",
-        onAction: () => alert("Editar clicado"),
-      },
-      {
-        content: "Mais opções",
-        onAction: () => alert("Mais opções clicado"),
-        disabled: false,
-      },
-    ],
-    children: (
-      <>
+  render: () => (
+    <Card>
+      <CardHeader>
+        <h2 style={{ margin: 0, flex: 1 }}>Card Completo</h2>
+        <button
+          onClick={() => alert("Editar clicado")}
+          style={{
+            background: "none",
+            border: "none",
+            padding: "4px 8px",
+            color: "#EA580C",
+            cursor: "pointer",
+            fontSize: "14px",
+            fontWeight: 500,
+          }}
+        >
+          Editar
+        </button>
+        <button
+          onClick={() => alert("Mais opções clicado")}
+          style={{
+            background: "none",
+            border: "none",
+            padding: "4px 8px",
+            color: "#EA580C",
+            cursor: "pointer",
+            fontSize: "14px",
+            fontWeight: 500,
+          }}
+        >
+          Mais opções
+        </button>
+      </CardHeader>
+      <div>
         <CardSection title="Informações Gerais">
           <p>Esta é a primeira seção com informações gerais sobre o card.</p>
         </CardSection>
         <CardSection title="Detalhes">
           <p>Esta é a segunda seção com detalhes adicionais.</p>
         </CardSection>
-      </>
-    ),
-    primaryFooterAction: {
-      content: "Salvar",
-      onAction: () => alert("Salvar clicado"),
-    },
-    secondaryFooterActions: [
-      {
-        content: "Cancelar",
-        onAction: () => alert("Cancelar clicado"),
-      },
-      {
-        content: "Excluir",
-        onAction: () => alert("Excluir clicado"),
-        destructive: true,
-      },
-    ],
-  },
+      </div>
+      <CardFooter>
+        <button
+          onClick={() => alert("Cancelar clicado")}
+          style={{
+            background: "none",
+            border: "none",
+            padding: "6px 12px",
+            color: "#292929",
+            cursor: "pointer",
+            fontSize: "14px",
+            fontWeight: 500,
+          }}
+        >
+          Cancelar
+        </button>
+        <button
+          onClick={() => alert("Excluir clicado")}
+          style={{
+            background: "none",
+            border: "none",
+            padding: "6px 12px",
+            color: "#EA580C",
+            cursor: "pointer",
+            fontSize: "14px",
+            fontWeight: 500,
+          }}
+        >
+          Excluir
+        </button>
+        <button
+          onClick={() => alert("Salvar clicado")}
+          style={{
+            padding: "8px 16px",
+            background: "#EA580C",
+            border: "none",
+            borderRadius: "8px",
+            color: "#FFF5ED",
+            cursor: "pointer",
+            fontSize: "14px",
+            fontWeight: 500,
+          }}
+        >
+          Salvar
+        </button>
+      </CardFooter>
+    </Card>
+  ),
   parameters: {
     docs: {
       description: {
-        story: "Card completo com todas as funcionalidades: título, ações no header, seções manuais e footer completo.",
+        story: "Card completo com todas as funcionalidades: CardHeader customizado, seções manuais e CardFooter customizado.",
       },
     },
   },
 }
 
-export const WithDisabledAction: Story = {
-  name: "Com Ação Desabilitada",
-  args: {
-    title: "Card com Ação Desabilitada",
-    actions: [
-      {
-        content: "Habilitado",
-        onAction: () => alert("Habilitado clicado"),
-        disabled: false,
-      },
-      {
-        content: "Desabilitado",
-        onAction: () => alert("Não deve aparecer"),
-        disabled: true,
-      },
-    ],
-    children: "Card com uma ação habilitada e outra desabilitada no header.",
-  },
+export const TitleOverride: Story = {
+  name: "Title Sobrescrito por CardHeader",
+  render: () => (
+    <Card title="Este título não aparece">
+      <CardHeader>
+        <h2 style={{ margin: 0, flex: 1 }}>Este título sobrescreve o title prop</h2>
+      </CardHeader>
+      <div>Quando há um CardHeader, o title prop é ignorado.</div>
+    </Card>
+  ),
   parameters: {
     docs: {
       description: {
-        story: "Card demonstrando ações desabilitadas no header.",
+        story: "Demonstra que quando há um CardHeader, o title prop do Card é ignorado.",
       },
     },
   },
