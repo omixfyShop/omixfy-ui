@@ -7,10 +7,12 @@ import { cn } from "../../lib/utils";
 const textVariants = cva(["of-text"], {
   variants: {
     size: {
+      max: ["display-max"],
       "3xl": ["display-3xl"],
       "2xl": ["display-2xl"],
       xl: ["display-xl"],
       lg: ["display-lg"],
+      base: ["display-base"],
       md: ["display-md"],
       sm: ["display-sm"],
       xs: ["display-xs"],
