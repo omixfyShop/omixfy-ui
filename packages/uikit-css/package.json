@@ -1,6 +1,6 @@
 {
   "name": "@omixfy/uikit-css",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Biblioteca de estilos CSS nativos do Omixfy UIkit",
   "main": "dist/global.css",
   "files": [
