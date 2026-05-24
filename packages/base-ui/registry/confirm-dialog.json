@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "confirm-dialog",
+  "type": "registry:component",
+  "title": "Confirm Dialog",
+  "description": "Dialog de confirmação acessível baseado em Radix Dialog, com variante destrutiva e estado de loading. Substitui window.confirm nativo.",
+  "registryDependencies": [],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "@radix-ui/react-dialog",
+    "lucide-react"
+  ],
+  "files": [
+    {
+      "path": "templates/confirm-dialogs/confirm-dialog.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport * as DialogPrimitive from \"@radix-ui/react-dialog\";\nimport { AlertTriangle } from \"lucide-react\";\n\nimport { cn } from \"../../lib/utils\";\n\nexport interface ConfirmDialogProps {\n  open: boolean;\n  onOpenChange: (open: boolean) => void;\n  title: string;\n  description?: React.ReactNode;\n  confirmLabel?: string;\n  cancelLabel?: string;\n  variant?: \"default\" | \"destructive\";\n  loading?: boolean;\n  onConfirm: () => void | Promise<void>;\n}\n\nconst ConfirmDialog: React.FC<ConfirmDialogProps> = ({\n  open,\n  onOpenChange,\n  title,\n  description,\n  confirmLabel = \"Confirmar\",\n  cancelLabel = \"Cancelar\",\n  variant = \"default\",\n  loading = false,\n  onConfirm,\n}) => {\n  const isDestructive = variant === \"destructive\";\n\n  const handleConfirm = async () => {\n    await onConfirm();\n  };\n\n  return (\n    <DialogPrimitive.Root\n      open={open}\n      onOpenChange={loading ? undefined : onOpenChange}\n    >\n      <DialogPrimitive.Portal>\n        <DialogPrimitive.Overlay className=\"fixed inset-0 z-50 bg-black/50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0\" />\n        <DialogPrimitive.Content\n          className={cn(\n            \"fixed left-1/2 top-1/2 z-50 w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-6 shadow-xl\",\n            \"data-[state=open]:animate-in data-[state=closed]:animate-out\",\n            \"data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0\",\n            \"data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95\",\n            \"focus:outline-none\"\n          )}\n        >\n          <div className=\"flex items-start gap-3\">\n            {isDestructive && (\n              <div className=\"flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-red-50\">\n                <AlertTriangle className=\"h-5 w-5 text-red-600\" />\n              </div>\n            )}\n            <div className=\"flex-1 min-w-0\">\n              <DialogPrimitive.Title className=\"text-base font-semibold text-[#202223]\">\n                {title}\n              </DialogPrimitive.Title>\n              {description && (\n                <DialogPrimitive.Description className=\"mt-2 text-sm text-[#6d7175]\">\n                  {description}\n                </DialogPrimitive.Description>\n              )}\n            </div>\n          </div>\n\n          <div className=\"mt-6 flex justify-end gap-2\">\n            <button\n              type=\"button\"\n              onClick={() => onOpenChange(false)}\n              disabled={loading}\n              className=\"px-4 py-2 text-sm font-medium text-[#202223] bg-white border border-[#c9cccf] rounded-md hover:bg-[#f6f6f7] disabled:opacity-50 disabled:cursor-not-allowed transition-colors\"\n            >\n              {cancelLabel}\n            </button>\n            <button\n              type=\"button\"\n              onClick={() => void handleConfirm()}\n              disabled={loading}\n              className={cn(\n                \"px-4 py-2 text-sm font-medium text-white rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition-colors\",\n                isDestructive\n                  ? \"bg-red-600 hover:bg-red-700\"\n                  : \"bg-[#008060] hover:bg-[#006e52]\"\n              )}\n            >\n              {loading ? \"Processando...\" : confirmLabel}\n            </button>\n          </div>\n        </DialogPrimitive.Content>\n      </DialogPrimitive.Portal>\n    </DialogPrimitive.Root>\n  );\n};\n\nexport { ConfirmDialog };\n",
+      "target": "components/ui/confirm-dialog.tsx"
+    }
+  ]
+}
