@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress-bar",
+  "type": "registry:component",
+  "title": "Progress Bar",
+  "description": "Barra de progresso com rótulo e percentual, seguindo o design system do Omixfy.",
+  "registryDependencies": [],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "templates/progress-bars/progress-bar.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"../../lib/utils\";\n\nexport interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {\n  value: number;\n  label?: string;\n  showValue?: boolean;\n}\n\nconst ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(\n  ({ className, value, label, showValue = true, ...props }, ref) => {\n    const clamped = Math.min(100, Math.max(0, value));\n    return (\n      <div\n        ref={ref}\n        className={cn(\"flex flex-col gap-1\", className)}\n        {...props}\n      >\n        {(label || showValue) && (\n          <div className=\"flex items-center justify-between text-[11px] text-primary\">\n            {label ? <span>{label}</span> : <span />}\n            {showValue && <span>{Math.round(clamped)}%</span>}\n          </div>\n        )}\n        <div\n          role=\"progressbar\"\n          aria-valuenow={Math.round(clamped)}\n          aria-valuemin={0}\n          aria-valuemax={100}\n          className=\"relative h-2 w-full overflow-hidden rounded-full bg-secondary\"\n        >\n          <div\n            className=\"h-full rounded-full bg-primary transition-all duration-300\"\n            style={{ width: `${clamped}%` }}\n          />\n        </div>\n      </div>\n    );\n  },\n);\nProgressBar.displayName = \"ProgressBar\";\n\nexport { ProgressBar };\n",
+      "target": "components/ui/progress-bar.tsx"
+    }
+  ]
+}

@@ -38,7 +38,18 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "progress-bar",
+      "type": "registry:component",
+      "title": "Progress Bar",
+      "description": "Barra de progresso com rótulo e percentual, seguindo o design system do Omixfy.",
+      "files": [
+        {
+          "path": "registry/progress-bar.json",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
-
