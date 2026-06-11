@@ -50,6 +50,210 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:component",
+      "title": "Dropdown Menu",
+      "description": "Menu suspenso acessível (Radix) para ações e opções contextuais.",
+      "files": [
+        {
+          "path": "registry/dropdown-menu.json",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:component",
+      "title": "Tooltip",
+      "description": "Dica flutuante exibida ao focar ou passar o mouse sobre um elemento.",
+      "files": [
+        {
+          "path": "registry/tooltip.json",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:component",
+      "title": "Tabs",
+      "description": "Navegação por abas para alternar entre painéis de conteúdo.",
+      "files": [
+        {
+          "path": "registry/tabs.json",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:component",
+      "title": "Table",
+      "description": "Tabela estilizada com cabeçalho, corpo, rodapé e células.",
+      "files": [
+        {
+          "path": "registry/table.json",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:component",
+      "title": "Sheet",
+      "description": "Painel deslizante (drawer) lateral baseado no Radix Dialog.",
+      "files": [
+        {
+          "path": "registry/sheet.json",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:component",
+      "title": "Separator",
+      "description": "Divisor horizontal ou vertical entre seções de conteúdo.",
+      "files": [
+        {
+          "path": "registry/separator.json",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:component",
+      "title": "Progress",
+      "description": "Barra de progresso determinada baseada no Radix Progress.",
+      "files": [
+        {
+          "path": "registry/progress.json",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:component",
+      "title": "Pagination",
+      "description": "Controles de paginação com navegação anterior/próxima e páginas.",
+      "files": [
+        {
+          "path": "registry/pagination.json",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:component",
+      "title": "Input",
+      "description": "Campo de entrada de texto estilizado.",
+      "files": [
+        {
+          "path": "registry/input.json",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "form",
+      "type": "registry:component",
+      "title": "Form",
+      "description": "Primitivos de formulário integrados ao react-hook-form.",
+      "files": [
+        {
+          "path": "registry/form.json",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:component",
+      "title": "Breadcrumb",
+      "description": "Trilha de navegação hierárquica (breadcrumb).",
+      "files": [
+        {
+          "path": "registry/breadcrumb.json",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:component",
+      "title": "Badge",
+      "description": "Selo compacto para status e rótulos com variantes.",
+      "files": [
+        {
+          "path": "registry/badge.json",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:component",
+      "title": "Toast",
+      "description": "Notificação temporária (toast) com variantes e ação.",
+      "files": [
+        {
+          "path": "registry/toast.json",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "text-field",
+      "type": "registry:component",
+      "title": "Text Field",
+      "description": "Campo de texto com label, ajuda e erro integrado ao formulário.",
+      "files": [
+        {
+          "path": "registry/text-field.json",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:component",
+      "title": "Select",
+      "description": "Seletor suspenso acessível baseado no Radix Select.",
+      "files": [
+        {
+          "path": "registry/select.json",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:component",
+      "title": "Label",
+      "description": "Rótulo de formulário acessível baseado no Radix Label.",
+      "files": [
+        {
+          "path": "registry/label.json",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "confirm-dialog",
+      "type": "registry:component",
+      "title": "Confirm Dialog",
+      "description": "Dialog de confirmação acessível baseado em Radix Dialog, com variante destrutiva e estado de loading. Substitui window.confirm nativo.",
+      "files": [
+        {
+          "path": "registry/confirm-dialog.json",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

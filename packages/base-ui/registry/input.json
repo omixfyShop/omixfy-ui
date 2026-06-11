@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input",
+  "type": "registry:component",
+  "title": "Input",
+  "description": "Campo de entrada de texto estilizado.",
+  "registryDependencies": [],
+  "dependencies": [],
+  "files": [
+    {
+      "path": "templates/inputs/input.tsx",
+      "type": "registry:component",
+      "content": "import * as React from \"react\";\n\nimport { cn } from \"../../lib/utils\";\n\nexport type InputProps = React.InputHTMLAttributes<HTMLInputElement>;\n\nconst Input = React.forwardRef<HTMLInputElement, InputProps>(\n  ({ className, type, ...props }, ref) => {\n    return (\n      <input\n        type={type}\n        className={cn(\n          \"flex h-8 w-full rounded-md border border-neutral-600 bg-of-surface px-3 py-1.5 text-sm text-primary-text file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\",\n          className,\n        )}\n        ref={ref}\n        {...props}\n      />\n    );\n  },\n);\nInput.displayName = \"Input\";\n\nexport { Input };\n",
+      "target": "components/ui/input.tsx"
+    }
+  ]
+}
