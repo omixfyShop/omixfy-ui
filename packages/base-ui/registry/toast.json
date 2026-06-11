@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toast",
+  "type": "registry:component",
+  "title": "Toast",
+  "description": "Notificação temporária (toast) com variantes e ação.",
+  "registryDependencies": [],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "files": [
+    {
+      "path": "templates/toasts/toast.tsx",
+      "type": "registry:component",
+      "content": "import * as React from \"react\";\nimport { X } from \"lucide-react\";\nimport { cn } from \"../../lib/utils\";\n\nexport interface ToastProps {\n  content: string;\n  onDismiss: () => void;\n  duration?: number;\n  variant?: \"default\" | \"success\" | \"error\" | \"warning\";\n}\n\nconst Toast: React.FC<ToastProps> = ({\n  content,\n  onDismiss,\n  duration = 4000,\n  variant = \"default\",\n}) => {\n  React.useEffect(() => {\n    if (duration > 0) {\n      const timer = setTimeout(() => {\n        onDismiss();\n      }, duration);\n\n      return () => clearTimeout(timer);\n    }\n  }, [duration, onDismiss]);\n\n  const variantStyles = {\n    default: \"bg-of-surface border-primary-200\",\n    success: \"bg-of-surface border-primary-200\",\n    error: \"bg-of-surface border-destructive\",\n    warning: \"bg-of-surface border-secondary-400\",\n  };\n\n  return (\n    <div\n      className={cn(\n        \"animate-in slide-in-from-bottom-5 fixed bottom-4 right-4 z-50 flex items-center gap-4 rounded-lg border p-4 shadow-lg\",\n        variantStyles[variant],\n      )}\n    >\n      <p className=\"text-sm text-primary-text\">{content}</p>\n      <button\n        onClick={onDismiss}\n        className=\"ring-offset-background focus:ring-ring rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2\"\n      >\n        <X className=\"h-4 w-4\" />\n        <span className=\"sr-only\">Fechar</span>\n      </button>\n    </div>\n  );\n};\n\nexport { Toast };\n",
+      "target": "components/ui/toast.tsx"
+    }
+  ]
+}

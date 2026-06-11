@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "select",
+  "type": "registry:component",
+  "title": "Select",
+  "description": "Seletor suspenso acessível baseado no Radix Select.",
+  "registryDependencies": [],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "files": [
+    {
+      "path": "templates/selects/select.tsx",
+      "type": "registry:component",
+      "content": "import * as React from \"react\";\nimport { ChevronDown } from \"lucide-react\";\nimport { cn } from \"../../lib/utils\";\n\nexport interface SelectOption {\n  label: string;\n  value: string;\n}\n\nexport interface SelectProps extends Omit<\n  React.SelectHTMLAttributes<HTMLSelectElement>,\n  \"onChange\"\n> {\n  label?: string;\n  options: SelectOption[];\n  placeholder?: string;\n  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;\n}\n\nconst Select = React.forwardRef<HTMLSelectElement, SelectProps>(\n  ({ className, label, options, placeholder, ...props }, ref) => {\n    return (\n      <div className=\"w-full\">\n        {label && (\n          <label\n            htmlFor={props.id}\n            className=\"mb-2 block text-sm font-medium text-primary-700\"\n          >\n            {label}\n          </label>\n        )}\n        <div className=\"relative\">\n          <select\n            ref={ref}\n            className={cn(\n              \"border-input bg-background ring-offset-background focus-visible:ring-ring flex h-10 w-full appearance-none rounded-md border px-3 py-2 pr-8 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\",\n              className,\n            )}\n            {...props}\n          >\n            {placeholder && (\n              <option value=\"\" disabled>\n                {placeholder}\n              </option>\n            )}\n            {options.map((option) => (\n              <option key={option.value} value={option.value}>\n                {option.label}\n              </option>\n            ))}\n          </select>\n          <ChevronDown className=\"text-muted-foreground pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2\" />\n        </div>\n      </div>\n    );\n  },\n);\nSelect.displayName = \"Select\";\n\nexport { Select };\n",
+      "target": "components/ui/select.tsx"
+    }
+  ]
+}

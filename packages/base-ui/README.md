@@ -195,12 +195,14 @@ import { Text } from "@/components/ui/text"
 #### Boas Práticas
 
 **Títulos (Headings)**
+
 - Use variantes de heading (`3xl`, `2xl`, `xl`, `lg`) para títulos
 - Devem descrever claramente a seção da interface
 - Destacar o conceito ou informação mais importante
 - Posicionar no topo da seção que descrevem
 
 **Legendas (Captions)**
+
 - Use a variante `bodySm` para legendas
 - Use para rótulos secundários em gráficos e tabelas
 - Pode ser usado para timestamps em listas de conteúdo
@@ -208,6 +210,7 @@ import { Text } from "@/components/ui/text"
 - Não use para efeito estético ou para quebrar o tamanho padrão
 
 **Estilos de Texto**
+
 - Use estilos quando precisar melhorar o entendimento do texto
 - Use estilo "subdued" (suave) quando o texto for menos importante que o texto ao redor
 - Use estilo "warning" (aviso) quando o texto denotar algo que precisa de atenção ou ação
@@ -215,10 +218,40 @@ import { Text } from "@/components/ui/text"
 - Combine com símbolos (como seta ou cifrão) ao usar estilos de sucesso ou crítico
 
 **Texto Visualmente Oculto**
+
 - Não use se a marcação semântica pode tornar o conteúdo compreensível para tecnologias assistivas
 - Use para fornecer contexto extra quando a marcação semântica não for suficiente
 - Use em qualquer conteúdo que normalmente está presente mas está sendo omitido
 - Deve fazer sentido no contexto quando usado com leitor de tela
+
+### Primitivos comuns
+
+Primitivos no estilo shadcn consolidados a partir das cópias duplicadas nos
+microfrontends, agora com fonte canônica única no registry. Instale qualquer um
+com o shadcn CLI:
+
+```bash
+npx shadcn-ui@latest add "https://raw.githubusercontent.com/omixfyShop/omixfy-ui/main/packages/base-ui/registry/<nome>.json"
+```
+
+| Componente      | Descrição                                                            |
+| --------------- | -------------------------------------------------------------------- |
+| `dropdown-menu` | Menu suspenso acessível (Radix) para ações e opções contextuais.     |
+| `tooltip`       | Dica flutuante exibida ao focar ou passar o mouse sobre um elemento. |
+| `tabs`          | Navegação por abas para alternar entre painéis de conteúdo.          |
+| `table`         | Tabela estilizada com cabeçalho, corpo, rodapé e células.            |
+| `sheet`         | Painel deslizante (drawer) lateral baseado no Radix Dialog.          |
+| `separator`     | Divisor horizontal ou vertical entre seções de conteúdo.             |
+| `progress`      | Barra de progresso determinada baseada no Radix Progress.            |
+| `pagination`    | Controles de paginação com navegação anterior/próxima e páginas.     |
+| `input`         | Campo de entrada de texto estilizado.                                |
+| `form`          | Primitivos de formulário integrados ao react-hook-form.              |
+| `breadcrumb`    | Trilha de navegação hierárquica (breadcrumb).                        |
+| `badge`         | Selo compacto para status e rótulos com variantes.                   |
+| `toast`         | Notificação temporária (toast) com variantes e ação.                 |
+| `text-field`    | Campo de texto com label, ajuda e erro integrado ao formulário.      |
+| `select`        | Seletor suspenso para escolha de opções.                             |
+| `label`         | Rótulo de formulário acessível baseado no Radix Label.               |
 
 ## 🏗️ Estrutura do Projeto
 
@@ -248,10 +281,11 @@ Os componentes utilizam SCSS com variáveis CSS customizadas. Certifique-se de i
 
 ```tsx
 // No seu arquivo global de estilos ou no componente
-import "@/components/ui/button.scss"
+import "@/components/ui/button.scss";
 ```
 
 As variáveis CSS utilizadas seguem o padrão do design system Omixfy:
+
 - `--of-primary-*` - Cores primárias
 - `--of-secondary-*` - Cores secundárias
 - `--of-neutral-*` - Cores neutras
@@ -263,16 +297,19 @@ As variáveis CSS utilizadas seguem o padrão do design system Omixfy:
 Para adicionar um novo componente ao registry:
 
 1. **Crie o componente** em `templates/[component-name]/`
+
    ```tsx
    // templates/input/input.tsx
    ```
 
 2. **Crie o arquivo de estilos** (se necessário)
+
    ```scss
    // templates/input/input.scss
    ```
 
 3. **Crie o registry JSON** em `registry/[component-name].json`
+
    ```json
    {
      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
